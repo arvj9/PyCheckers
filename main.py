@@ -1,2 +1,8 @@
-print("Hello, World!")
-print("Hello, Jon!")
+from turtle import *
+
+
+for _ in range(4):
+    forward(100)
+    left(90)
+
+mainloop()
