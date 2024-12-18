@@ -1,15 +1,12 @@
-
-print("Hello, World!")
-print("Hello, Jon!")
-print("Hello, Ares")
-print("ANOTHER LINE")
-# I have no idea what i'm doing
-
-from turtle import *
+from tkinter import *
 
 
-for _ in range(4):
-    forward(100)
-    left(90)
+GAME_WIDTH = 800
+GAME_HEIGHT = 800
 
-mainloop()
+WINDOW = Tk()
+
+CANVAS = Canvas(WINDOW, width=GAME_WIDTH, height=GAME_HEIGHT)
+CANVAS.pack()
+
+WINDOW.mainloop()
