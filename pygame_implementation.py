@@ -1,39 +1,48 @@
 import sys
 
 import pygame
+from pygame.locals import *
 
 
 pygame.init()
 
 # Pre-defined game settings
-GAME_WIDTH = 800
-GAME_HEIGHT = 800
-GAME_SIZE = (GAME_WIDTH, GAME_HEIGHT)
+GAME_SIZE = GAME_WIDTH, GAME_HEIGHT = 800, 800
 
 FPS = 60
 frame_per_second = pygame.time.Clock()
 
-# Pre-defined colors -> rgb(0-255, 0-255, 0-255)
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
+
 
 DISPLAY_SURFACE = pygame.display.set_mode(GAME_SIZE)
-DISPLAY_SURFACE.fill(BLACK)
+DISPLAY_SURFACE.fill("black")
+
 
 class Square(pygame.Rect):
-    def __init__(self, left: float, top: float, width: float, color = WHITE):
-        super().__init__(left, top, width, width)
+    width = 100
+    def __init__(self, left, top, color="white"):
+        super().__init__(left, top, self.width, self.width)
         self.color = color
 
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, self)
 
 
+class Board:
+    def __init__(self):
+        self.board = []
+        for i in range(8):
+            for j in range(8):
+                self.board.append(Square(i * 100, j * 100, "white" if (i + j) % 2 == 0 else "darkgreen"))
+
+    def draw(self):
+        for column in self.board:
+            for square in self.board:
+                square.draw(DISPLAY_SURFACE)
+
+
 # object instantiation
-SQUARE = Square(0, 0, 100)
+board = Board()
 
 while True:
     for event in pygame.event.get():
@@ -45,7 +54,7 @@ while True:
 
 
     # draw game
-    SQUARE.draw(DISPLAY_SURFACE)
+    board.draw()
 
     pygame.display.update()
     frame_per_second.tick(FPS)
