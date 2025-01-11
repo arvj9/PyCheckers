@@ -19,7 +19,7 @@ DISPLAY_SURFACE.fill("black")
 
 
 class Square(pygame.Rect):
-    width = 100
+    width = DISPLAY_SURFACE.get_width() / 8
     def __init__(self, left, top, color="white"):
         super().__init__(left, top, self.width, self.width)
         self.color = color
