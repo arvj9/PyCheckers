@@ -23,6 +23,7 @@ class Square(pygame.Rect):
     def __init__(self, left, top, color="white"):
         super().__init__(left, top, self.width, self.width)
         self.color = color
+        self.highlight = "red"
 
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, self)
@@ -49,6 +50,11 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            for square in board.board:
+                if square.collidepoint(event.pos):
+                    square.color = square.highlight
 
     # game updates
 
